@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="gluten.js" type="module"></script>
+    <script src="glutenfree.js" type="module"></script>
+    <title>Pizza Calculator</title>
+    <link
+      rel="shortcut icon"
+      href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/facebook/304/pizza_1f355.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <div class="is-flex is-align-items-center">
+          <figure class="image is-64x64">
+            <img src="./img/pizza.jpg" alt="image of a pizza slice" />
+            <img src="" alt="" />
+          </figure>
+          <span class="custom-logo-text">Neopolitan Pizza Calculator</span>
+        </div>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <a href="#" class="navbar-item"> Nathan Fretz </a>
+            <a href="https://github.com/nmfretz" target="_blank" class="navbar-item"> Github </a>
+            <a href="https://twitter.com/nmfretz" target="_blank" class="navbar-item"> Twitter </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section>
+      <div class="tabs is-toggle is-toggle-rounded is-centered mb-0">
+        <ul>
+          <li class="is-active"><a data-gluten-tab>Gluten</a></li>
+          <li><a data-glutenfree-tab>Gluten-Free</a></li>
+        </ul>
+      </div>
+
+      <div class="has-text-centered mt-4">
+        <p class="is-italic">"Why you keep trying to delete pizza?!"</p>
+        <p class="is-size-7">&mdash;Andy Coo <span class="is-italic">in desperation</span></p>
+      </div>
+    </section>
+
+    <div class="mb-4" data-gluten>
+      <section class="is-flex is-flex-direction-column is-align-items-center mt-6">
+        <form>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Number of Pizzas</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="1" data-num-pizzas />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Weight Per Pizza (g)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="250" data-weight />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Water Content (%)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="57" data-water-content />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Yeast (%)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="0.2" data-yeast-percent />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Salt (%)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="3" data-salt-percent />
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-grouped is-grouped-centered">
+            <div class="control">
+              <button class="button is-link" data-calculate-btn>
+                <span class="icon">
+                  <i class="fa-solid fa-pizza-slice"></i>
+                </span>
+                <span>Calculate</span>
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light" data-reset-btn>Default Values</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="mt-6">
+        <div class="container is-flex is-flex-direction-column is-align-items-center">
+          <p class="title is-4">Calculated Amounts</p>
+          <table class="table is-narrow">
+            <tbody>
+              <tr>
+                <th>Flour</th>
+                <td data-flour-calc></td>
+              </tr>
+              <tr>
+                <th>Water</th>
+                <td data-water-calc></td>
+              </tr>
+              <tr>
+                <th>Yeast</th>
+                <td data-yeast-calc></td>
+              </tr>
+              <tr>
+                <th>Salt</th>
+                <td data-salt-calc></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="mb-4 is-hidden" data-glutenfree>
+      <section class="is-flex is-flex-direction-column is-align-items-center mt-6">
+        <form>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Number of Pizzas</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="1" data-num-pizzas-gf />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Weight Per Pizza (g)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="250" data-weight-gf />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Water Content (%)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="80" data-water-content-gf />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Olive Oil (%)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="5" data-oliveoil-percent-gf />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Yeast (%)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="0.1" data-yeast-percent-gf />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal has-text-left">
+              <label class="label">Salt (%)</label>
+            </div>
+            <div class="field-body is-flex-grow-1">
+              <div class="field">
+                <p class="control">
+                  <input class="input" type="number" value="3" data-salt-percent-gf />
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-grouped is-grouped-centered">
+            <div class="control">
+              <button class="button is-link" data-calculate-btn-gf>
+                <span class="icon">
+                  <i class="fa-solid fa-pizza-slice"></i>
+                </span>
+                <span>Calculate</span>
+                <span class="icon">
+                  <i class="fa-solid fa-pizza-slice"></i>
+                </span>
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light" data-reset-btn-gf>Default Values</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="mt-6">
+        <div class="container is-flex is-flex-direction-column is-align-items-center">
+          <p class="title is-4">Calculated Amounts</p>
+          <table class="table is-narrow">
+            <tbody>
+              <tr>
+                <th>Flour</th>
+                <td data-flour-calc-gf></td>
+              </tr>
+              <tr>
+                <th>Water</th>
+                <td data-water-calc-gf></td>
+              </tr>
+              <tr>
+                <th>Olive Oil</th>
+                <td data-oliveoil-calc-gf></td>
+              </tr>
+              <tr>
+                <th>Yeast</th>
+                <td data-yeast-calc-gf></td>
+              </tr>
+              <tr>
+                <th>Salt</th>
+                <td data-salt-calc-gf></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <section class="custom-footer is-size-7">
+      <a href="https://www.vecteezy.com/free-vector/pizza">Navbar logo by Vecteezy</a>
+    </section>
+  </body>
+</html>
