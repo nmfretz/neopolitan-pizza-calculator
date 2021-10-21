@@ -14,6 +14,7 @@ Front end currently deployed on vercel at https://neopolitan-pizza-calculator.ve
 
 - :balance_scale: Calculates ingredients based on [baker's percentage](https://en.wikipedia.org/wiki/Baker_percentage).
 - :no_entry_sign::ear_of_rice: Gluten-free option with default values changed and olive oil included.
+- [Bulma](https://bulma.io/) CSS framework.
 
 # Setup
 

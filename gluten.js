@@ -13,6 +13,12 @@ const saltResultElement = document.querySelector("[data-salt-calc]");
 
 calculateIngredients();
 
+const burgerIcon = document.querySelector("[data-burger-icon]");
+const navbarMenu = document.querySelector("[data-nav-links]");
+burgerIcon.addEventListener("click", (e) => {
+  navbarMenu.classList.toggle("is-active");
+});
+
 const glutenTab = document.querySelector("[data-gluten-tab]");
 const glutenfreeTab = document.querySelector("[data-glutenfree-tab]");
 
