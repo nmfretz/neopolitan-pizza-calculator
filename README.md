@@ -16,6 +16,14 @@ Front end currently deployed on vercel at https://neopolitan-pizza-calculator.ve
 - :no_entry_sign::ear_of_rice: Gluten-free option with default values changed and olive oil included.
 - [Bulma](https://bulma.io/) CSS framework.
 
+### TODO
+
+- [ ] add form validation
+- [ ] add info for user:
+  - [ ] recommended ingredient ranges
+  - [ ] useful links
+  - [ ] cooking instructions
+
 # Setup
 
 ```
