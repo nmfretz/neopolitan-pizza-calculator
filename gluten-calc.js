@@ -11,50 +11,24 @@ const waterResultElement = document.querySelector("[data-water-calc]");
 const yeastResultElement = document.querySelector("[data-yeast-calc]");
 const saltResultElement = document.querySelector("[data-salt-calc]");
 
-calculateIngredients();
+export function setupGlutenCalculator() {
+  calculateGluten();
 
-const burgerIcon = document.querySelector("[data-burger-icon]");
-const navbarMenu = document.querySelector("[data-nav-links]");
-burgerIcon.addEventListener("click", (e) => {
-  navbarMenu.classList.toggle("is-active");
-});
+  const calculateButton = document.querySelector("[data-calculate-btn]");
+  calculateButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    calculateGluten();
+  });
 
-const glutenTab = document.querySelector("[data-gluten-tab]");
-const glutenfreeTab = document.querySelector("[data-glutenfree-tab]");
-
-glutenTab.addEventListener("click", (e) => {
-  if (e.target.parentElement.matches(".is-active")) return;
-  changeTab();
-});
-
-glutenfreeTab.addEventListener("click", (e) => {
-  if (e.target.parentElement.matches(".is-active")) return;
-  changeTab();
-});
-
-const calculateButton = document.querySelector("[data-calculate-btn]");
-calculateButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  calculateIngredients();
-});
-
-const resetDefaultsButton = document.querySelector("[data-reset-btn]");
-resetDefaultsButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  resetDefaultValues();
-  calculateIngredients();
-});
-
-function changeTab() {
-  const glutenSection = document.querySelector("[data-gluten]");
-  const glutenfreeSection = document.querySelector("[data-glutenfree]");
-  glutenSection.classList.toggle("is-hidden");
-  glutenfreeSection.classList.toggle("is-hidden");
-  glutenTab.parentElement.classList.toggle("is-active");
-  glutenfreeTab.parentElement.classList.toggle("is-active");
+  const resetDefaultsButton = document.querySelector("[data-reset-btn]");
+  resetDefaultsButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    resetDefaultValuesGluten();
+    calculateGluten();
+  });
 }
 
-function calculateIngredients() {
+function calculateGluten() {
   const numPizzas = numPizzaInput.value;
   const weightPerPizza = pizzaWeightInput.value;
   const waterContent = waterContentInput.value;
@@ -72,7 +46,7 @@ function calculateIngredients() {
   saltResultElement.innerText = `${salt.toFixed(1)} g`;
 }
 
-function resetDefaultValues() {
+function resetDefaultValuesGluten() {
   numPizzaInput.value = 1;
   pizzaWeightInput.value = 250;
   waterContentInput.value = 57;
