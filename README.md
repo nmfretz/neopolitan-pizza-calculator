@@ -18,7 +18,7 @@ Front end currently deployed on vercel at https://neopolitan-pizza-calculator.ve
 
 ### TODO
 
-- [ ] add form validation
+- [x] add form validation
 - [ ] add info for user:
   - [ ] recommended ingredient ranges
   - [ ] useful links

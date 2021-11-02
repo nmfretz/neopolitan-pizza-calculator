@@ -28,22 +28,28 @@ export function setupGlutenCalculator() {
   });
 }
 
+let isFormValid = false;
+
 function calculateGluten() {
   const numPizzas = numPizzaInput.value;
   const weightPerPizza = pizzaWeightInput.value;
   const waterContent = waterContentInput.value;
-  const percentYeast = parseFloat(yeastPercentInput.value);
-  const percentSalt = parseFloat(saltPercentInput.value);
+  const percentYeast = yeastPercentInput.value;
+  const percentSalt = saltPercentInput.value;
 
   const flour = (numPizzas * weightPerPizza) / (1 + waterContent / 100 + percentYeast / 100 + percentSalt / 100);
   const water = (flour * waterContent) / 100;
   const salt = (percentSalt / 100) * flour;
   const yeast = (percentYeast / 100) * flour;
 
-  flourResultElement.innerText = `${flour.toFixed(1)} g`;
-  waterResultElement.innerText = `${water.toFixed(1)} g`;
-  yeastResultElement.innerText = `${yeast.toFixed(1)} g`;
-  saltResultElement.innerText = `${salt.toFixed(1)} g`;
+  validateFormInputGluten(numPizzas, weightPerPizza, waterContent, percentYeast, percentSalt);
+
+  if (isFormValid) {
+    flourResultElement.innerText = `${flour.toFixed(1)} g`;
+    waterResultElement.innerText = `${water.toFixed(1)} g`;
+    yeastResultElement.innerText = `${yeast.toFixed(1)} g`;
+    saltResultElement.innerText = `${salt.toFixed(1)} g`;
+  }
 }
 
 function resetDefaultValuesGluten() {
@@ -52,4 +58,38 @@ function resetDefaultValuesGluten() {
   waterContentInput.value = 57;
   yeastPercentInput.value = 0.2;
   saltPercentInput.value = 3;
+}
+
+function validateFormInputGluten(numPizzas, weightPerPizza, waterContent, percentYeast, percentSalt) {
+  clearErrorMessageGluten();
+
+  isFormValid = true;
+
+  if (numPizzas === "" || weightPerPizza === "" || waterContent === "" || percentYeast === "" || percentSalt === "") {
+    renderErrorMessageGluten();
+    isFormValid = false;
+  }
+}
+
+const messageElement = document.querySelector("[data-error-message-gluten]");
+const glutenSection = document.querySelector("[data-gluten]");
+
+function renderErrorMessageGluten() {
+  messageElement.classList.remove("is-hidden");
+
+  const allInputs = [...glutenSection.querySelectorAll("input")];
+  allInputs.forEach((input) => {
+    if (input.value === "") {
+      input.classList.add("is-danger");
+    }
+  });
+}
+
+function clearErrorMessageGluten() {
+  messageElement.classList.add("is-hidden");
+
+  const allInputs = [...glutenSection.querySelectorAll("input")];
+  allInputs.forEach((input) => {
+    input.classList.remove("is-danger");
+  });
 }

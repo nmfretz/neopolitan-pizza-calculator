@@ -30,13 +30,15 @@ export function setupGlutenfreeCalculator() {
   });
 }
 
+let isFormValidGF = false;
+
 export function calculateGlutenfree() {
   const numPizzas = numPizzaInputGF.value;
   const weightPerPizza = pizzaWeightInputGF.value;
   const waterContent = waterContentInputGF.value;
   const percentOliveoil = oliveoilPercentInputGF.value;
-  const percentYeast = parseFloat(yeastPercentInputGF.value);
-  const percentSalt = parseFloat(saltPercentInputGF.value);
+  const percentYeast = yeastPercentInputGF.value;
+  const percentSalt = saltPercentInputGF.value;
 
   const flour =
     (numPizzas * weightPerPizza) /
@@ -46,11 +48,15 @@ export function calculateGlutenfree() {
   const salt = (percentSalt / 100) * flour;
   const yeast = (percentYeast / 100) * flour;
 
-  flourResultElementGF.innerText = `${flour.toFixed(1)} g`;
-  waterResultElementGF.innerText = `${water.toFixed(1)} g`;
-  oliveoilResultElementGF.innerText = `${oliveoil.toFixed(1)} g`;
-  yeastResultElementGF.innerText = `${yeast.toFixed(1)} g`;
-  saltResultElementGF.innerText = `${salt.toFixed(1)} g`;
+  validateFormInputGlutenfree(numPizzas, weightPerPizza, waterContent, percentOliveoil, percentYeast, percentSalt);
+
+  if (isFormValidGF) {
+    flourResultElementGF.innerText = `${flour.toFixed(1)} g`;
+    waterResultElementGF.innerText = `${water.toFixed(1)} g`;
+    oliveoilResultElementGF.innerText = `${oliveoil.toFixed(1)} g`;
+    yeastResultElementGF.innerText = `${yeast.toFixed(1)} g`;
+    saltResultElementGF.innerText = `${salt.toFixed(1)} g`;
+  }
 }
 
 function resetDefaultGlutenfree() {
@@ -60,4 +66,52 @@ function resetDefaultGlutenfree() {
   oliveoilPercentInputGF.value = 5;
   yeastPercentInputGF.value = 0.1;
   saltPercentInputGF.value = 3;
+}
+
+function validateFormInputGlutenfree(
+  numPizzas,
+  weightPerPizza,
+  waterContent,
+  percentOliveoil,
+  percentYeast,
+  percentSalt
+) {
+  clearErrorMessageGlutenfree();
+
+  isFormValidGF = true;
+
+  if (
+    numPizzas === "" ||
+    weightPerPizza === "" ||
+    waterContent === "" ||
+    percentOliveoil === "" ||
+    percentYeast === "" ||
+    percentSalt === ""
+  ) {
+    renderErrorMessageGlutenfree();
+    isFormValidGF = false;
+  }
+}
+
+const messageElementGF = document.querySelector("[data-error-message-glutenfree]");
+const glutenfreeSection = document.querySelector("[data-glutenfree]");
+
+function renderErrorMessageGlutenfree() {
+  messageElementGF.classList.remove("is-hidden");
+
+  const allInputs = [...glutenfreeSection.querySelectorAll("input")];
+  allInputs.forEach((input) => {
+    if (input.value === "") {
+      input.classList.add("is-danger");
+    }
+  });
+}
+
+function clearErrorMessageGlutenfree() {
+  messageElementGF.classList.add("is-hidden");
+
+  const allInputs = [...glutenfreeSection.querySelectorAll("input")];
+  allInputs.forEach((input) => {
+    input.classList.remove("is-danger");
+  });
 }
